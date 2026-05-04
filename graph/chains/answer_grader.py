@@ -12,14 +12,14 @@ class AnswerGrader(BaseModel):
     )
     
 
-llm = ChatGroq(model="llama-3.3-70b-versatile").with_structured_output(AnswerGrader)
+llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0).with_structured_output(AnswerGrader)
 
 
 
 prompt = ChatPromptTemplate.from_messages(
     [
         ("system","""You are a grader assessing whether an answer addresses / resolves a question \n 
-     Give a binary score 'yes' or 'no'. Yes' means that the answer resolves the question.""")
+     Give a binary score 'yes' or 'no'. Yes' means that the answer resolves the question."""),
         ("user", """User question: \n\n {question} \n\n LLM Generation: \n\n {generation}""")
     ]
 )
