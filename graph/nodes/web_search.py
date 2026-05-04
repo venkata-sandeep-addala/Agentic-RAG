@@ -1,3 +1,8 @@
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
 from typing import Dict, Any
 from dotenv import load_dotenv
 
@@ -8,7 +13,7 @@ from langchain_tavily import TavilySearch
 from langchain_classic.schema import Document
 
 
-tavily_web_search = TavilySearch(max_results=1)
+tavily_web_search = TavilySearch(max_results=2)
 
 
 
@@ -23,8 +28,7 @@ def web_search(state: GraphState) -> Dict[str, Any]:
         documents = None
     
     tavily_search_results = tavily_web_search.invoke(question)
-    joined_tavily_results = "\n".join([result['results'][-1]['content'] for result in tavily_search_results])
-    
+    joined_tavily_results = "\n".join([res['content'] for res in tavily_search_results['results']])
     doc = Document(page_content=joined_tavily_results)
     
     if documents:
