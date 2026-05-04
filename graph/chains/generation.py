@@ -4,7 +4,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 
 
-llm = ChatGroq(model="llama-3.3-70b-versatile")
+llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0)
 
 # RAG prompt template
 template = """You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question. If you don't know the answer, just say that you don't know. Keep your answer concise.
