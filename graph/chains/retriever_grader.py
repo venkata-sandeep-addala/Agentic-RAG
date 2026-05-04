@@ -11,7 +11,7 @@ class GradeDocuments(BaseModel):
     )
     
     
-llm = ChatGroq(model="llama-3.3-70b-versatile").with_structured_output(GradeDocuments)
+llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0).with_structured_output(GradeDocuments)
 
 prompt = ChatPromptTemplate.from_messages(
     [
